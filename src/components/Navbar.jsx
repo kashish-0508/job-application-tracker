@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -11,12 +11,24 @@ const Navbar = () => {
         <h2 className="logo">JobTracker</h2>
 
         <div className={`nav-links ${open ? "active" : ""}`}>
-          <Link to="/" onClick={() => setOpen(false)}>Home</Link>
-          <Link to="/dashboard" onClick={() => setOpen(false)}>Dashboard</Link>
-          <Link to="/applications" onClick={() => setOpen(false)}>Applications</Link>
+          <span className="close-btn" onClick={() => setOpen(false)}>
+            ✕
+          </span>
+
+          <NavLink to="/" onClick={() => setOpen(false)}>
+            Home
+          </NavLink>
+
+          <NavLink to="/dashboard" onClick={() => setOpen(false)}>
+            Dashboard
+          </NavLink>
+
+          <NavLink to="/applications" onClick={() => setOpen(false)}>
+            Applications
+          </NavLink>
         </div>
 
-        <div className="hamburger" onClick={() => setOpen(!open)}>
+        <div className="hamburger" onClick={() => setOpen(true)}>
           ☰
         </div>
       </div>
