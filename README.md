@@ -3,6 +3,7 @@
 A modern and responsive **Job Application Tracker** built with **React, HTML, CSS, and JavaScript**.  
 This project helps users to **add, track, and manage job applications** efficiently. It includes a **Home page, Dashboard, and Applications page** with clean UI, animations, and search functionality.
 
+---
 
 ## 🌟 Features
 
@@ -68,6 +69,7 @@ JobApplicationTracker/
 │ └── main.jsx
 └── package.json
 
+---
 
 ## 🚀 How to Run
 
@@ -87,6 +89,8 @@ Open your browser and go to:
 
 http://localhost:3000
 
+---
+
 ## 🎨 Design & UX
 Clean and minimal nude color palette
 
@@ -96,12 +100,16 @@ Mobile responsive layouts
 
 Professional UI suitable for portfolio and resume showcase
 
+---
+
 ## 📌 Notes
 Dashboard page is used only for adding applications
 
 Applications page displays all added jobs with search and delete functionality
 
 Data persists in browser localStorage
+
+---
 
 ## 💻 Screenshots
 **Home Page**  
@@ -113,12 +121,14 @@ Data persists in browser localStorage
 **Applications Page**  
 ![Applications](src/assets/Application.png)  
 
+---
 
-⚡ Author
+## ⚡ Author
 Kashish Bhardwaj
 
+---
 
-📄 License
+## 📄 License
 This project is open source and free to use.
 
 
