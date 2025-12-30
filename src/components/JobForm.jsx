@@ -1,59 +1,55 @@
 import { useState } from "react";
 
-const JobForm = ({ jobs, setJobs }) => {
-  const [company, setCompany] = useState("");
-  const [role, setRole] = useState("");
-  const [status, setStatus] = useState("Applied");
-  const [success, setSuccess] = useState(false);
+const JobForm = ({ setJobs }) => {
+  const [form, setForm] = useState({
+    company: "",
+    role: "",
+    status: "Applied",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!company || !role) return;
 
-    const newJob = { id: Date.now(), company, role, status };
+    if (!form.company || !form.role) return;
 
-    // Update state + localStorage
-    const updatedJobs = [...jobs, newJob];
-    setJobs(updatedJobs);
-    localStorage.setItem("jobs", JSON.stringify(updatedJobs));
+    const newJob = {
+      id: Date.now(),
+      ...form,
+    };
 
-    // Clear form
-    setCompany("");
-    setRole("");
-    setStatus("Applied");
+    setJobs((prev) => [newJob, ...prev]);
 
-    // Show success message
-    setSuccess(true);
-    setTimeout(() => setSuccess(false), 2000);
+    setForm({ company: "", role: "", status: "Applied" });
   };
 
   return (
-    <div className="job-form-container">
-      {success && <div className="success-message">Application Added ✅</div>}
-      <form className="job-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Company"
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Role"
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-          required
-        />
-        <select value={status} onChange={(e) => setStatus(e.target.value)}>
-          <option>Applied</option>
-          <option>Interview</option>
-          <option>Selected</option>
-          <option>Rejected</option>
-        </select>
-        <button type="submit">Add Job</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit} className="job-form">
+      <input
+        type="text"             
+        placeholder="Company"
+        value={form.company}
+        onChange={(e) => setForm({ ...form, company: e.target.value })}
+      />
+
+      <input
+        type="text"             
+        placeholder="Role"
+        value={form.role}
+        onChange={(e) => setForm({ ...form, role: e.target.value })}
+      />
+
+      <select
+        value={form.status}
+        onChange={(e) => setForm({ ...form, status: e.target.value })}
+      >
+        <option value="Applied">Applied</option>
+        <option value="Selected">Selected</option>
+        <option value="Interviewed">Interviewed</option>
+        <option value="Rejected">Rejected</option>
+      </select>
+
+      <button type="submit">Add Job</button>
+    </form>
   );
 };
 

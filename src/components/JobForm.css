@@ -1,0 +1,11 @@
+.job-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 400px;
+}
+
+.job-form select {
+  z-index: 10;
+  position: relative;
+}

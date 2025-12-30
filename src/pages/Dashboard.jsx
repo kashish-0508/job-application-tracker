@@ -1,25 +1,27 @@
 import { useState } from "react";
 
-const Dashboard = () => {
+const Dashboard = ({ setJobs }) => {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
+  const [status, setStatus] = useState("Applied");
   const [msg, setMsg] = useState("");
 
   const handleAdd = () => {
     if (!company || !role) return;
 
-    const jobs = JSON.parse(localStorage.getItem("jobs")) || [];
     const newJob = {
       id: Date.now(),
       company,
       role,
-      status: "Applied",
+      status,
     };
 
-    localStorage.setItem("jobs", JSON.stringify([...jobs, newJob]));
+    setJobs((prev) => [newJob, ...prev]); // ✅ STATE UPDATE
+
     setMsg("✅ Application Added Successfully!");
     setCompany("");
     setRole("");
+    setStatus("Applied");
 
     setTimeout(() => setMsg(""), 2000);
   };
@@ -42,6 +44,16 @@ const Dashboard = () => {
           value={role}
           onChange={(e) => setRole(e.target.value)}
         />
+
+        <select
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+        >
+          <option value="Applied">Applied</option>
+          <option value="Interviewed">Interviewed</option>
+          <option value="Selected">Selected</option>
+          <option value="Rejected">Rejected</option>
+        </select>
 
         <button onClick={handleAdd}>Add Application</button>
 

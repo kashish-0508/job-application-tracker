@@ -4,6 +4,10 @@ import JobCard from "../components/JobCard.jsx";
 const Applications = ({ jobs, setJobs }) => {
   const [search, setSearch] = useState("");
 
+  const handleDelete = (id) => {
+    setJobs((prevJobs) => prevJobs.filter((job) => job.id !== id));
+  };
+
   const filteredJobs = jobs.filter(
     (job) =>
       job.company.toLowerCase().includes(search.toLowerCase()) ||
@@ -27,7 +31,11 @@ const Applications = ({ jobs, setJobs }) => {
       ) : (
         <div className="job-list">
           {filteredJobs.map((job) => (
-            <JobCard key={job.id} job={job} setJobs={setJobs} />
+            <JobCard
+              key={job.id}
+              job={job}
+              onDelete={handleDelete}   
+            />
           ))}
         </div>
       )}
